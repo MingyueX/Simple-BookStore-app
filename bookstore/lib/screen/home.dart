@@ -1,4 +1,6 @@
+import 'package:bookstore/dataset/book.dart';
 import 'package:bookstore/screen/booklist.dart';
+import 'package:bookstore/screen/readlist.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,12 +12,27 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final _readList = <Book>[];
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  Widget _selectPage() {
+    if (_selectedIndex == 0) {
+      return BookPage(
+        onBookAdded: (book) {
+          setState(() {
+            _readList.add(book);
+          });
+        },
+      );
+    } else {
+      return ReadPage(_readList);
+    }
   }
 
   @override
@@ -27,20 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 70,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          centerTitle: false,
-          title: const Text(
-            'BookStore',
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                color: Colors.black, fontSize: 35, fontWeight: FontWeight.bold),
-          ),
-          titleSpacing: 30,
-        ),
-        body: const BookPage(),
+        body: _selectPage(),
         bottomNavigationBar: Container(
           decoration: const BoxDecoration(
               color: Colors.white,

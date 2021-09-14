@@ -11,13 +11,20 @@ import 'package:flutter/widgets.dart';
 class BookDialog extends StatefulWidget {
   final Book book;
 
-  const BookDialog(this.book);
+  final Function(Book) onAddTapped;
+
+  const BookDialog({
+    required this.book,
+    required this.onAddTapped,
+  });
 
   @override
   _BookDialogState createState() => _BookDialogState();
 }
 
 class _BookDialogState extends State<BookDialog> {
+  bool _isInList = false;
+
   @override
   Widget build(BuildContext context) {
     return SimpleDialog(
@@ -73,35 +80,43 @@ class _BookDialogState extends State<BookDialog> {
                             color: Colors.black45,
                           )
                         ]),
-                    TextButton(
-                        onPressed: _addToReadList,
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.amber[600],
-                          ),
-                          child: Wrap(
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              children: const [
-                                Padding(padding: EdgeInsets.only(left: 5)),
-                                Icon(
-                                  Icons.book,
-                                  size: 20,
-                                  color: Colors.white,
-                                ),
-                                Padding(padding: EdgeInsets.only(left: 5)),
-                                Text(
-                                  "Add to ReadList",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                      color: Colors.white),
-                                ),
-                                Padding(padding: EdgeInsets.only(left: 5))
-                              ]),
-                        ))
+                    _isInList
+                        ? const Text(
+                            'In List',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                color: Colors.black54),
+                          )
+                        : TextButton(
+                            onPressed: _addToList,
+                            child: Container(
+                              alignment: Alignment.center,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.amber[600],
+                              ),
+                              child: Wrap(
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  children: const [
+                                    Padding(padding: EdgeInsets.only(left: 5)),
+                                    Icon(
+                                      Icons.book,
+                                      size: 20,
+                                      color: Colors.white,
+                                    ),
+                                    Padding(padding: EdgeInsets.only(left: 5)),
+                                    Text(
+                                      "Add to ReadList",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                          color: Colors.white),
+                                    ),
+                                    Padding(padding: EdgeInsets.only(left: 5))
+                                  ]),
+                            ))
                   ]),
             )
           ],
@@ -110,7 +125,12 @@ class _BookDialogState extends State<BookDialog> {
     );
   }
 
-  _addToReadList() {}
+  _addToList() {
+    widget.onAddTapped(widget.book);
+    setState(() {
+      _isInList = true;
+    });
+  }
 
   String getDesc(Book book) {
     if (book.shortDesc.isEmpty) {

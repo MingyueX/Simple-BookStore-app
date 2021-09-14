@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class BookContainer extends StatelessWidget {
   final Book book;
 
+  // ignore: use_key_in_widget_constructors
   const BookContainer(this.book);
 
   @override

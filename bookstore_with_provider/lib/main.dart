@@ -1,5 +1,6 @@
 import 'package:bookstore/provider.dart';
 import 'package:bookstore/screen/home.dart';
+import 'package:bookstore/style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +15,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(title: 'BookStore Demo', home: MyHomePage());
+    return MaterialApp(
+        title: 'BookStore Demo',
+        theme: Styles.bookThemeData,
+        home: const MyHomePage());
   }
 }

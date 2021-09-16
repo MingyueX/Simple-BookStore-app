@@ -49,11 +49,8 @@ class BookTile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.black87,
                     ),
-                    child: const Text("Read",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            color: Colors.white))))
+                    child: Text("Read",
+                        style: Theme.of(context).textTheme.button)))
           ],
         ))
       ],

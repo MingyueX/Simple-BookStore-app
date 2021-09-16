@@ -38,10 +38,7 @@ class BookDialog extends StatelessWidget {
                     Text(
                       book.title,
                       softWrap: true,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Colors.black),
+                      style: Theme.of(context).textTheme.headline1,
                     ),
                     const Padding(padding: EdgeInsets.only(bottom: 10)),
                     Text(
@@ -49,10 +46,7 @@ class BookDialog extends StatelessWidget {
                       softWrap: true,
                       maxLines: 5,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 15,
-                          color: Colors.black87),
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                     const Padding(padding: EdgeInsets.only(bottom: 5)),
                     Wrap(
@@ -88,26 +82,26 @@ class BookDialog extends StatelessWidget {
                               height: 40,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.amber[600],
+                                color: Theme.of(context).primaryColor,
                               ),
                               child: Wrap(
                                   crossAxisAlignment: WrapCrossAlignment.center,
-                                  children: const [
-                                    Padding(padding: EdgeInsets.only(left: 5)),
-                                    Icon(
+                                  children: [
+                                    const Padding(
+                                        padding: EdgeInsets.only(left: 5)),
+                                    const Icon(
                                       Icons.book,
                                       size: 20,
                                       color: Colors.white,
                                     ),
-                                    Padding(padding: EdgeInsets.only(left: 5)),
+                                    const Padding(
+                                        padding: EdgeInsets.only(left: 5)),
                                     Text(
                                       "Add to ReadList",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14,
-                                          color: Colors.white),
+                                      style: Theme.of(context).textTheme.button,
                                     ),
-                                    Padding(padding: EdgeInsets.only(left: 5))
+                                    const Padding(
+                                        padding: EdgeInsets.only(left: 5))
                                   ]),
                             ));
                       }

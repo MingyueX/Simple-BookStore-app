@@ -16,11 +16,11 @@ class ReadPage extends StatelessWidget {
     return Column(children: [
       const CupertinoNavigationBar(middle: Text('My ReadList')),
       readlist.isEmpty
-          ? const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 26),
+          ? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 26),
               child: Text(
                 '\nYou haven\'t added any book to your readList yet.',
-                style: TextStyle(fontSize: 14, color: Colors.black54),
+                style: Theme.of(context).textTheme.subtitle1,
               ),
             )
           : Expanded(

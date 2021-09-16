@@ -26,11 +26,10 @@ class _BookPageState extends State<BookPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: false,
-        title: const Text(
+        title: Text(
           'BookStore',
           textAlign: TextAlign.left,
-          style: TextStyle(
-              color: Colors.black, fontSize: 35, fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.headline2,
         ),
         titleSpacing: 30,
       ),
@@ -64,10 +63,7 @@ class _BookPageState extends State<BookPage> {
                         overflow: TextOverflow.ellipsis,
                         softWrap: true,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold),
+                        style: Theme.of(context).textTheme.headline1,
                       ))
                 ]);
               }));
